@@ -21,11 +21,33 @@ output: html_document: default
 #Profit Estimate
 
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting!-->
+##3. How much money would Brownlow be expected to end up with if the bets went as described?
 
+```{r}
+results=vector("numeric")
+for(j in 1:1000){
+bank=0
+for(i in 1:637){
+  class=sample(365,35,replace=TRUE)
+  n=length(unique(class))
+if(n==35)bank=bank-2
+  else bank=bank+1
+}
+results[j]=bank
+}
+sortRESULTS=sort(results)
+lcl=sortRESULTS[25]
+ucl=sortRESULTS[975]
+hist(results)
+```
+
+According to the Histogram Results, Brownlow will be between $225.00 to $240.00.
 
 # Confidence interval of Brownlows earning
 
 <!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows-->
+
+The confidence level is indeed between $225.00 to $240.00 which provides the 95% confidence interval.
 
 
 # Discussion and Conclusion
