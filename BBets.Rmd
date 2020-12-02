@@ -1,9 +1,18 @@
 ---
 title: "Brownlows Bets"
-author: "Put your name here!"
-date: "put the date here"
+author: "Diana Reyes"
+date: "November 22,2020"
 output: html_document: default
  ---
+```{r}setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(tigerstats)
+require(knitr)
+daysYEAR=1:365
+
+```
+ 
 
 <!-- We recommend you use git branches -- create a separate branch for each major section i.e. Introduction, Methods, Results, Inferential Results, and Discussion and Conclusions - leave the YAML block untouched until the final merge where you put in your own name !-->
 
@@ -16,6 +25,64 @@ output: html_document: default
 # Methods
 
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 1137 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
+
+In order to solve the problem re-sampling must be done. We will set up days of the year, take a random sample of 35 students and review if two or more students in fact have the same birthday. The following three questions have to be answered:
+
+1. What are the fair odds for a bet on matching birthdays in a 35 person class.
+
+2. For what size class is a 2:1 odds bet fair.
+
+3. How much money would Brownlow be expected to end up with if the bets went as described.
+
+## Sample data
+
+```{r}
+daysYEAR=1:365
+```
+
+### 1. What are the fair odds for a bet on matching birthdays for a class of 35 students?
+
+```{r}
+results=vector("numeric")
+for(j in 1:1000){
+bank=0
+for(i in 1:637){
+  class=sample(daysYEAR,28,replace=TRUE)
+  class=sample(daysYEAR,35,replace=TRUE)
+  n=length(unique(class))
+if(n==33)bank=bank-2
+if(n==35)bank=bank-4.25
+  else bank=bank+1
+}
+results[j]=bank
+}
+sortRESULTS=sort(results)
+lcl=sortRESULTS[25]
+ucl=sortRESULTS[975]
+hist(results)
+```
+
+According to the Histogram of results, Brownlow would have to pay out $4.25 in order to be a fair odds bet!
+
+###2. For what size class is a 2:1 odds bet fair.
+
+```{r}
+results=vector("numeric")
+for(j in 1:1000){
+bank=0
+for(i in 1:637){
+class=sample(daysYEAR,28,replace=TRUE)
+n=length(unique(class)) 
+if(n==28)bank=bank-2
+  else bank=bank+1
+}
+results[j]=bank
+}
+hist(results)
+```
+
+According to the Historgram results, the class would have to have 28 students in order to consist of a fair odds bet.
+
 
 
 #Profit Estimate
