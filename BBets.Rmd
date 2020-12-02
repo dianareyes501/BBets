@@ -1,7 +1,7 @@
 ---
 title: "Brownlows Bets"
 author: "Diana Reyes"
-date: "November 5 2020"
+date: "November 20, 2020"
 output: 
   html_document:
     number_sections: true
@@ -13,12 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 require(tidyverse)
 require(tidyverse)
 require(knitr)
+daysYEAR=1:365
 ```
 
 
 <!-- We recommend you use git branches -- create a separate branch for each major section i.e. Introduction, Methods, Results, Inferential Results, and Discussion and Conclusions - leave the YAML block untouched until the final merge where you put in your own name !-->
 
 # Introduction
+
+
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
 
@@ -29,6 +32,11 @@ There are 3 questions and there should be at least 3 separate commits, at least 
 1. What are the fair odds for a bet on matching birthdays in a 35 person class.
 2. For what size class is a 2:1 odds bet fair.
 3. How much money would Brownlow be expected to end up with if the bets went as described.
+
+$H_0$ The Null Hypothesis is that Brownlow is wagering and will profit more than he will lose.
+
+$H_A$ The Alternate Hypothesis is that Brownlow should not wager due to the higher possibility of losing more than winning.
+
 
 # What are the fair odds  
 
